@@ -1720,11 +1720,9 @@ var Flowtime = (function ()
 	/**
 	 * KEYBOARD NAVIGATION
 	 */
-	//Brav1Toolbox.addListener(window, "keydown", onKeyDown);
-	//Brav1Toolbox.addListener(window, "keyup", onKeyUp);
-	window.addEventListener("keydown", onKeyDown);
-	window.addEventListener("keyup", onKeyUp);
-	
+	Brav1Toolbox.addListener(window, "keydown", onKeyDown);
+	Brav1Toolbox.addListener(window, "keyup", onKeyUp);
+
 	function onKeyDown(e)
 	{
 		//var tag = e.target.tagName;
