@@ -1720,68 +1720,80 @@ var Flowtime = (function ()
 	/**
 	 * KEYBOARD NAVIGATION
 	 */
-	Brav1Toolbox.addListener(window, "keydown", onKeyDown);
-	Brav1Toolbox.addListener(window, "keyup", onKeyUp);
+	//Brav1Toolbox.addListener(window, "keydown", onKeyDown);
+	//Brav1Toolbox.addListener(window, "keyup", onKeyUp);
+	window.addEventListener("keydown", onKeyDown);
+	window.addEventListener("keyup", onKeyUp);
 	
 	function onKeyDown(e)
 	{
-		var tag = e.target.tagName;
-		if (tag != "INPUT" && tag != "TEXTAREA" && tag != "SELECT")
+		//var tag = e.target.tagName;
+		//f (tag != "INPUT" && tag != "TEXTAREA" && tag != "SELECT")
+		//{
+		//	if (e.keyCode >= 37 && e.keyCode <= 40)
+		//	{
+		//		e.preventDefault();
+		//	}
+		//	if (e.keyCode === 83) { // 83 is keyCode for 'S'
+		//		e.preventDefault();
+		//		_gotoBottom(); // Make sure this function exists in your code
+		//	}
+		//}
+
+		if (e.key.toLowerCase === "w" || e.key.toLowerCase === "s") // S or W key
 		{
-			if (e.keyCode >= 37 && e.keyCode <= 40)
-			{
-				e.preventDefault();
-			}
+			e.preventDefault(); // Always prevent default for S and W
 		}
+
+
 	}
 	
 	function onKeyUp(e)
 	{
-		var tag = e.target.tagName;
-		var elem;
-		if (tag != "INPUT" && tag != "TEXTAREA" && tag != "SELECT")
-		{
-			e.preventDefault();
-			switch (e.keyCode)
-			{
-				case 27 : // esc
-					_toggleOverview(true);
-					break;
-				case 33 : // pag up
-					_gotoTop();
-					break;
-				case 34 : // pag down
-					_gotoBottom();
-					break;
-				case 35 : // end
-					_gotoEnd();
-					break;
-				case 36 : // home
-					_gotoHome();
-					break;
-				case 37 : // left
-					_prevSection(e.shiftKey);
-					break;
-				case 39 : // right
-					_nextSection(e.shiftKey);
-					break;
-				case 38 : // up
-					_prevPage(e.shiftKey);
-					break;
-				case 40 : // down
-					_nextPage(e.shiftKey);
-					break;
-				case 13 : // return
-				{
-					if (isOverview)
-					{
-						_gotoPage(NavigationMatrix.getCurrentHilited());
-					}
-					break;
+		//var tag = e.target.tagName;
+		//var elem;
+		//if (tag != "INPUT" && tag != "TEXTAREA" && tag != "SELECT")
+		switch (e.key.toLowerCase()) {
+			case "s": // 'S' key for next page
+				_nextPage(e.shiftKey);
+				break;
+			case "w": // 'W' key for previous page
+				_prevPage(e.shiftKey);
+				break;
+			case "esc": // Escape key
+				_toggleOverview(true);
+				break;
+			case "pageup": // Page Up key
+				_gotoTop();
+				break;
+			case "pagedown": // Page Down key
+				_gotoBottom();
+				break;
+			case "end": // End key
+				_gotoEnd();
+				break;
+			case "home": // Home key
+				_gotoHome();
+				break;
+			case "arrowleft": // Left arrow key
+				_prevSection(e.shiftKey);
+				break;
+			case "arrowright": // Right arrow key
+				_nextSection(e.shiftKey);
+				break;
+			case "arrowup": // Up arrow key
+				_prevPage(e.shiftKey);
+				break;
+			case "arrowdown": // Down arrow key
+				_nextPage(e.shiftKey);
+				break;
+			case "enter": // Enter key
+				if (isOverview) {
+					_gotoPage(NavigationMatrix.getCurrentHilited());
 				}
-				default :
-					break;
-			}
+				break;
+			default:
+				break;
 		}
 	}
 
